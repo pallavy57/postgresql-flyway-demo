@@ -1,5 +1,5 @@
-DROP TABLE if exists TestTableForFlyway cascade;
-CREATE TABLE IF NOT EXISTS public.TestTableForFlyway (
+DROP TABLE if exists TestTableForFlyway2 cascade;
+CREATE TABLE IF NOT EXISTS public.TestTableForFlyway2 (
     id character varying(255) NOT NULL,
     category_id character varying(255),
     title character varying(255),
@@ -13,4 +13,4 @@ CREATE TABLE IF NOT EXISTS public.TestTableForFlyway (
     created_at date,
     updated_at date
 );
-ALTER TABLE public.TestTableForFlyway OWNER TO postgres;
+ALTER TABLE public.TestTableForFlyway2 OWNER TO postgres;
