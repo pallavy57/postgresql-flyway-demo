@@ -11,17 +11,17 @@ pipeline {
     }
     stage('migrate') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -user=jenkins -password=jenkins migrate'
+        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest  migrate'
       }
     }
     stage('validate') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -user=jenkins -password=jenkins validate'
+        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest validate'
       }
     }
     stage('info') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -user=jenkins -password=jenkins info'
+        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest  info'
       }
     }
   }
