@@ -11,17 +11,17 @@ pipeline {
     }
     stage('migrate') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  migrate'
+        sh 'docker run --rm -v $WORKSPACE/Amazonish_01:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  migrate'
       }
     }
     stage('validate') {
       steps {
-        sh 'docker run  --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy  -password=123456789 validate'
+        sh 'docker run  --rm -v $WORKSPACE/Amazonish_01:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy  -password=123456789 validate'
       }
     }
     stage('info') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  info'
+        sh 'docker run --rm -v $WORKSPACE/Amazonish_01:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  info'
       }
     }
   }
