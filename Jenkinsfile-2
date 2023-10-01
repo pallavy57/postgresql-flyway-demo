@@ -12,22 +12,22 @@ pipeline {
 
      stage('repair') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" repair'
+        sh 'docker run --rm -v $WORKSPACE:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" repair'
       }
     }
     stage('migrate') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" migrate'
+        sh 'docker run --rm -v $WORKSPACE:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" migrate'
       }
     }
     stage('validate') {
       steps {
-        sh 'docker run  --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy  -password=123456789 -outOfOrder="true" validate'
+        sh 'docker run  --rm -v $WORKSPACE:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy  -password=123456789 -outOfOrder="true" validate'
       }
     }
     stage('info') {
       steps {
-        sh 'docker run --rm -v $WORKSPACE/Amazonish_02:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" info'
+        sh 'docker run --rm -v $WORKSPACE:/flyway/sql -v $WORKSPACE/conf:/flyway/conf flyway/flyway:latest -url=jdbc:postgresql://postgresql-147036-0.cloudclusters.net:10023/amazonish -user=pallavy -password=123456789  -outOfOrder="true" info'
       }
     }
   }
